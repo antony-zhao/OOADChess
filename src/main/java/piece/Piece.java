@@ -4,7 +4,7 @@ import strategy.Strategy;
 
 public class Piece {
     private final boolean isWhite;
-    public Strategy strategy;
+    private Strategy strategy;
 
     public Piece(Strategy strategy, boolean isWhite) {
         this.isWhite = isWhite;
@@ -13,5 +13,9 @@ public class Piece {
 
     public boolean getSide() {
         return isWhite;
+    }
+
+    public Strategy getStrategy() {
+        return strategy;
     }
 }

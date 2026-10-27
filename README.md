@@ -9,13 +9,13 @@ moves.
 This is also very relevant for pawn promotion logic, where 
 piece strategy needs to change partway through the game.
 
-### Observer Pattern
+### (Partly TODO) Observer Pattern
 
 We use this to log things like moves, captures, checks, and checkmates. 
 In general this will be useful to observe any events, and 
 can be later used with a Swing viewer for a GUI of the game.
 
-### Factory Pattern
+### (Partly TODO) Factory Pattern
 
 We will use this to actually create the concrete objects 
 inserted into the game and can define the strategies of 
