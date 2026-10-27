@@ -29,3 +29,8 @@ We are using a builder pattern for the context for any events
 being observed in the game, since there are many possible options 
 for moves that we might want to have reported, such as if a move 
 captures a piece, is a check, or any combination of these.
+
+May also be useful for making the board itself.
+
+### Singleton Pattern
+Our event bus is a singleton like how we had it in Polymorphia.

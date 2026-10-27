@@ -2,7 +2,7 @@ package strategy;
 
 import java.util.List;
 
-public class Knight extends Strategy {
+public class KnightStrategy extends Strategy {
     @Override
     public List<String> validMoves(String startLocation, boolean isWhite) {
         return super.knightMoves(startLocation);

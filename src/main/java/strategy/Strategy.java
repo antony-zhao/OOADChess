@@ -21,18 +21,20 @@ public abstract class Strategy {
     public abstract List<String> validMoves(String startLocation, boolean isWhite);
 
     public static String offset(String startLocation, int colOffset, int rowOffset) {
-        return "" + (startLocation.charAt(0) + colOffset) + (startLocation.charAt(1) + rowOffset);
+        char file = (char) (startLocation.charAt(0) + colOffset);
+        char rank = (char) (startLocation.charAt(1) + rowOffset);
+        return "" + file + rank;
     }
 
     List<String> rookMoves(String startLocation) {
         List<String> possibleMoves = new ArrayList<>();
-        for(int i = 0; i < Board.BOARD_SIZE; i++) {
-            possibleMoves.add(offset("" + 'a' + startLocation.charAt(1), i, 0));
+        for (int i = 1; i < Board.BOARD_SIZE; i++) {
+            possibleMoves.add(offset(startLocation, i, 0));
+            possibleMoves.add(offset(startLocation, -i, 0));
+            possibleMoves.add(offset(startLocation, 0, i));
+            possibleMoves.add(offset(startLocation, 0, -i));
         }
-        for(int i = 0; i < Board.BOARD_SIZE; i++) {
-            possibleMoves.add(offset("" + startLocation.charAt(0) + '1', 0, i));
-        }
-        possibleMoves.remove(startLocation);
+        possibleMoves.removeIf(move -> !Board.isValidSquare(move));
         return possibleMoves;
     }
 
@@ -45,9 +47,8 @@ public abstract class Strategy {
             String downLeft = offset(startLocation, -i, -i);
             possibleMoves.addAll(List.of(upRight, upLeft, downRight, downLeft));
         }
-        return possibleMoves.stream()
-                .filter(Board::isValidSquare)
-                .toList();
+        possibleMoves.removeIf(move -> !Board.isValidSquare(move));
+        return possibleMoves;
     }
 
     List<String> knightMoves(String startLocation) {
